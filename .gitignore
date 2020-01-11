@@ -121,7 +121,7 @@ fabric.properties
 # Sonarlint plugin
 .idea/**/sonarlint/
 
-# SonarQube Plugin  
+# SonarQube Plugin
 .idea/**/sonarIssues.xml
 
 # Markdown Navigator plugin
