@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20200111141305) do
 
   create_table "communes", force: :cascade do |t|
     t.string   "name"
-    t.integer  "code_insee"
+    t.string   "code_insee"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "intercommunality_id"
@@ -23,19 +23,9 @@ ActiveRecord::Schema.define(version: 20200111141305) do
     t.index ["intercommunality_id"], name: "index_communes_on_intercommunality_id"
   end
 
-  create_table "communes_streets", force: :cascade do |t|
-    t.integer  "commune_id"
-    t.integer  "street_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["commune_id"], name: "index_communes_streets_on_commune_id"
-    t.index ["street_id"], name: "index_communes_streets_on_street_id"
-  end
-
-  create_table "destroys", force: :cascade do |t|
-    t.string   "CommunesStreet"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+  create_table "communes_streets", id: false, force: :cascade do |t|
+    t.integer "commune_id", null: false
+    t.integer "street_id",  null: false
   end
 
   create_table "intercommunalities", force: :cascade do |t|
