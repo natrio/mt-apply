@@ -1,6 +1,7 @@
 class Commune < ApplicationRecord
   belongs_to :intercommunality, optional: true
-  has_many :streets
+  has_many :commune_streets
+  has_many :streets, :through => :commune_streets
 
   validates :name, presence: true, case_sensitive: false
   validates :code_insee, length: {is: 5}, presence: true, uniqueness: true

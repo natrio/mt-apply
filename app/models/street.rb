@@ -1,5 +1,6 @@
 class Street < ApplicationRecord
-  has_many :communes
+  has_many :commune_streets
+  has_many :communes, :through => :commune_streets
 
   attr_accessor :from, :to
   validates :title, presence: true

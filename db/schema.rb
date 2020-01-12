@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200112155421) do
+ActiveRecord::Schema.define(version: 20200112182701) do
+
+  create_table "commune_streets", force: :cascade do |t|
+    t.integer "commune_id"
+    t.integer "street_id"
+    t.index ["commune_id"], name: "index_commune_streets_on_commune_id"
+    t.index ["street_id"], name: "index_commune_streets_on_street_id"
+  end
 
   create_table "communes", force: :cascade do |t|
     t.string   "name"
@@ -18,26 +25,18 @@ ActiveRecord::Schema.define(version: 20200112155421) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "intercommunality_id"
-    t.integer  "street_id"
     t.integer  "population"
     t.index ["id"], name: "index_communes_on_id"
     t.index ["intercommunality_id"], name: "index_communes_on_intercommunality_id"
   end
 
-  create_table "communes_streets", id: false, force: :cascade do |t|
-    t.integer "commune_id", null: false
-    t.integer "street_id",  null: false
-  end
-
   create_table "intercommunalities", force: :cascade do |t|
     t.string   "name"
     t.integer  "siren"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.integer  "intercommunality_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "form"
     t.index ["id"], name: "index_intercommunalities_on_id"
-    t.index ["intercommunality_id"], name: "index_intercommunalities_on_intercommunality_id"
     t.index ["siren"], name: "index_intercommunalities_on_siren", unique: true
   end
 
@@ -47,7 +46,6 @@ ActiveRecord::Schema.define(version: 20200112155421) do
     t.integer  "to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "commune_id"
   end
 
 end
