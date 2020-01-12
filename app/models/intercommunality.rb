@@ -46,4 +46,8 @@ class Intercommunality < ApplicationRecord
     super attributes
   end
 
+  def population
+    self.communes.sum(:population)
+  end
+
 end

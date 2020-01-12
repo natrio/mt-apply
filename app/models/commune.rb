@@ -3,7 +3,7 @@ class Commune < ApplicationRecord
   has_many :streets
 
   validates :name, presence: true, case_sensitive: false
-  validates :code_insee, length: {is: 5}, presence: true
+  validates :code_insee, length: {is: 5}, presence: true, uniqueness: true
 
   def self.search(pattern)
     pattern = pattern.downcase.gsub(/[^a-zA-Z\u00C0-\u00FF]/) { |s| '\\' + s }
